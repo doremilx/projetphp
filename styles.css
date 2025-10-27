@@ -1,0 +1,40 @@
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+
+        }
+head {
+            margin: 0;
+            padding: 0;
+
+        }
+h1 {
+            color: #333;
+            margin-top: 50px;
+        }
+h2 {
+            color: #868585;
+            margin-top: 20px;
+        }
+section{
+            margin-top: 50px;
+            background-color: #ffd4d4ff;
+            height:100vh
+        }
+.conteneurPost{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.post{
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 250px;
+    min-height: 200px;
+}
