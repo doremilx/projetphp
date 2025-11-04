@@ -41,9 +41,11 @@ section{
 
 .unique{
     background-color: red;
+    font-size: 1.25em;
 }
 .commun{
     background-color: green;
+    font-size: 1.25em;
 }
 .flexHead{
     display: flex;
@@ -69,4 +71,8 @@ section{
     display: flex;
     align-items: center;
     gap: 5px;
+}
+.profile_photo img{
+    border-radius: 100%;
+    border: 1px solid black;
 }

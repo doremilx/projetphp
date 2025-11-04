@@ -3,35 +3,41 @@ require_once('connexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $login = $_POST['login'];
-    $motdepasse = $_POST['motdepasse'];
+    // On vérifie que les champs existent et ne sont pas vides
+    if (
+        isset($_POST['nom']) && $_POST['nom'] !== "" &&
+        isset($_POST['prenom']) && $_POST['prenom'] !== "" &&
+        isset($_POST['login']) && $_POST['login'] !== "" &&
+        isset($_POST['motdepasse']) && $_POST['motdepasse'] !== ""
+    ) {
 
-    // Gestion de la photo
-    $photo = "images/default.jpg"; // valeur par défaut
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $login = $_POST['login'];
+        $motdepasse = $_POST['motdepasse'];
 
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
 
-        $dossier = "images/";  // dossier où tu veux stocker les images
-        $nomFichier = basename($_FILES['photo']['name']);
+        if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+            $dossier = "images/";
+            $nomFichier = basename($_FILES['photo']['name']);
+            $chemin = $dossier . $nomFichier;
+            move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);
+            $photo = $chemin;
+        }
 
-        $chemin = $dossier . $nomFichier;
+        // insertion en base
+        $sql = "INSERT INTO utilisateurs (nom, prenom, login, motdepasse, etatbooleen, photo)
+                VALUES (?, ?, ?, ?, 0, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$nom, $prenom, $login, $motdepasse, $photo]);
 
-        // Déplace le fichier dans ton dossier images/
-        move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);
-
-        // On stocke en base le chemin vers l'image
-        $photo = $chemin;
+        echo "Compte créé avec succès !";
+        echo "<br><a href='login.php'>Retour à la page de connexion</a>";
+        exit;
     }
 
-    // insertion en base avec la photo
-    $sql = "INSERT INTO utilisateurs (nom, prenom, login, motdepasse, etatbooleen, photo) 
-            VALUES (?, ?, ?, ?, 0, ?)";
-    $stmt = $db->prepare($sql);
-    $stmt->execute([$nom, $prenom, $login, $motdepasse, $photo]);
-
-    echo "Compte créé avec succès !";
-    echo "<br><a href='login.php'>Retour à la page de connexion</a>";
+    // Si on arrive ici, c’est que les champs ne sont pas remplis
+    echo "Erreur : tous les champs doivent être remplis.";
+    echo "<br><a href='login.php'>Retour</a>";
 }
 ?>
