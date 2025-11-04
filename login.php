@@ -63,11 +63,14 @@ include 'connexion.php';
     </form>
 
     <h1>Créer un compte</h1>
-    <form action="creer_compte.php" method="POST">
+    <form action="creer_compte.php" method="POST" enctype="multipart/form-data">
         <input type="text" name="nom" id="nom" placeholder="Nom">
         <input type="text" name="prenom" id="prenom" placeholder="Prénom">
         <input type="text" name="login" id="login" placeholder="Login">
         <input type="password" name="motdepasse" id="motdepasse" placeholder="Mot de passe">
+        <label for="photo">Photo de profil</label>
+        <input type="file" name="photo" id="photo">
+        <br>
         <button type="submit">Créer un compte</button>
     </form></div>
 </body>

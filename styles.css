@@ -38,3 +38,35 @@ section{
     width: 250px;
     min-height: 200px;
 }
+
+.unique{
+    background-color: red;
+}
+.commun{
+    background-color: green;
+}
+.flexHead{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.entete{
+    background-color: cornflowerblue;
+    font-size: 2em;
+    text-align: center;
+    margin: 0;
+}
+
+.entete h1{
+    margin: 0;
+}
+
+.entete h2{
+    margin: 0;
+}
+
+.profile_photo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

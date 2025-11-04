@@ -9,19 +9,31 @@
 </head>
 <body>
     <header>
+        <div class="entete">
         <h1>Blog</h1>
         <h2>Venez discuter et parler de tout !</h2>
+        <a href=""></a>
         <?php 
         if (!isset($_SESSION['login'])){
         echo'<a href="login.php">Connexion / Inscription</a>';};
         ?>
+        </div>
         <?php 
-
+echo'<div class="flexHead">';
 if (isset($_SESSION['login'])) {
     $login = $_SESSION['login'];
+    $photo = $_SESSION['photo'];
+    $nom = $_SESSION['nom'];
+    $prenom =  $_SESSION['prenom'];
+    echo '<div class="commun">';
     echo "<p>Connecté en tant que : " . ($login) . "</p>";
+    echo '<div class="profile_photo"> <img src=' . $photo . ' width="30px">';
+    echo '<a href="">' . $nom . ' ' . $prenom . '</a> </div>';
+    echo '<br>';
     echo "<a href='logout.php'>Se déconnecter</a><br><br>";
+    echo '</div>';
 
+    echo '<div class="unique">';
     if ($login == 'remi@mail.com'){ 
         echo '<h3>Session Admin</h3>';
         echo 
@@ -39,7 +51,8 @@ if (isset($_SESSION['login'])) {
 
 </form>';
     };
-   
+   echo '</div>';
+   echo '</div>';
 } else {
     $login = null;
 }
