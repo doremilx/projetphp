@@ -17,6 +17,7 @@ if( isset($_POST['login']) && isset($_POST['password']) ) {
    foreach ($resultats as $valeur) {
         if( $valeur['login'] === $login && $valeur['motdepasse'] === $password ) {
             $_SESSION['login'] = $_POST['login'];
+            $_SESSION['id'] = $valeur['id_utilisateur'];
             echo "Connexion réussie ! Bienvenue" . " " . $valeur['prenom'] . " " . $valeur['nom'];
             echo "<br><a href='index.php'>Retour à l'accueil</a>";
             exit();

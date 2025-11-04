@@ -37,14 +37,14 @@
         }
         input[type="submit"], button {
             padding: 10px;
-            background-color: #a728a7ff;
+            background-color: rgb(91, 87, 217);
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         input[type="submit"]:hover, button:hover {
-            background-color: #218838;
+            background-color: rgba(52, 49, 135, 1);
         }
     </style>
 </head>
