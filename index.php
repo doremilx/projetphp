@@ -37,7 +37,7 @@ if (isset($_SESSION['login'])) {
     if ($login == 'remi@mail.com'){ 
         echo '<h3>Session Admin</h3>';
         echo 
-    '<form action="billet.php" method="post">
+    '<form action="billet.php" method="post" enctype="multipart/form-data">
     <label for="titre">titre</label>
     <input type="text" id="titre" name="titre">
     <br>
@@ -47,12 +47,16 @@ if (isset($_SESSION['login'])) {
     <label for="contenu">Contenu du billet</label>
     <input type="textarea" id="contenu" name="contenu">
     <br>
+    <label for="photo_billet">Image du billet</label>
+    <input type="file" id="photo_billet" name="photo_billet">
+    <br>
     <input type="submit" name="valider">
 
 </form>';
     };
    echo '</div>';
    echo '</div>';
+   echo '<a href="admin.php"> Menu Admin </a>';
 } else {
     $login = null;
 }
@@ -68,8 +72,8 @@ $stmt->execute();
 $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($resultats as $valeur) {
     echo "<div class='post'>";
+    echo "<img src='" . $valeur['photo_billet'] . "' width='250px' />";
     echo "<h3>" .$valeur['titre'] . " <br>" . ($valeur['date']) . "</h3>";
-    echo "<p>" . $valeur['contenu'] . "</p>";
     echo "<a href='detail.php?id=" . $valeur['id_billet'] . "'>Voir les détails</a>";
     echo "</div>";
 }

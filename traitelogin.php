@@ -15,7 +15,7 @@ if( isset($_POST['login']) && isset($_POST['password']) ) {
     $password = $_POST['password'];
 
    foreach ($resultats as $valeur) {
-        if( $valeur['login'] === $login && $valeur['motdepasse'] === $password ) {
+        if( $valeur['login'] === $login && password_verify($password, $valeur['motdepasse']) ) {
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['id'] = $valeur['id_utilisateur'];
             $_SESSION['photo'] = $valeur['photo'];
@@ -32,5 +32,5 @@ if( isset($_POST['login']) && isset($_POST['password']) ) {
     else {
     echo "Veuillez remplir tous les champs.";
 } 
-echo "coucou";
+echo "<br><a href='javascript:history.back()'>Retour</a>";
 ?> 

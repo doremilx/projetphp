@@ -67,11 +67,29 @@ include 'connexion.php';
         <input type="text" name="nom" id="nom" placeholder="Nom">
         <input type="text" name="prenom" id="prenom" placeholder="Prénom">
         <input type="text" name="login" id="login" placeholder="Login">
-        <input type="password" name="motdepasse" id="motdepasse" placeholder="Mot de passe">
+        <div style="display:flex; align-items:center; gap:5px;">
+    <input type="password" name="motdepasse" id="motdepasse" placeholder="Mot de passe">
+    <button type="button" id="toggleBtn" onclick="togglePassword()">👁️</button>
+</div>
         <label for="photo">Photo de profil</label>
         <input type="file" name="photo" id="photo">
         <br>
         <button type="submit">Créer un compte</button>
     </form></div>
 </body>
+<script>
+    function togglePassword() {
+    let input = document.getElementById("motdepasse");
+    let btn = document.getElementById("toggleBtn");
+
+    if (input.type === "password") {
+        input.type = "text";
+        btn.textContent = "🙈";
+    } else {
+        input.type = "password";
+        btn.textContent = "👁️";
+    }
+}
+
+</script>
 </html>
